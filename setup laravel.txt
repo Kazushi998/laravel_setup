@@ -1,0 +1,111 @@
+///change db name in env file
+
+///change timezone, config/app.php:
+'timezone' => 'Asia/Kuala_Lumpur',
+
+///fortifyui:
+composer require zacksmash/fortify-ui
+php artisan fortify:ui
+php artisan migrate
+
+///fortifyuikit:
+composer require zacksmash/fortify-uikit
+php artisan fortify:uikit
+npm i && npm run dev
+
+///laratrust:
+composer require santigarcor/laratrust
+php artisan vendor:publish --tag="laratrust"
+php artisan laratrust:setup
+yes
+php artisan laratrust:seeder
+php artisan vendor:publish --tag="laratrust-seeder"
+composer dump-autoload
+
+///In the database/seeds/DatabaseSeeder.php file you have to add this to the run method:
+$this->call(LaratrustSeeder::class);
+
+///roles structure: config/laratrust_seeder.php
+php artisan migrate
+php artisan db:seed
+
+///app/Actions/Fortify/CreateNewUser.php
+return User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ])->attachRole($input['user']);
+        // ])->attachRole('role_id');
+
+///resources/views/auth/register.blade.php
+<select name="role_id">
+                    <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
+
+///routes/web.php
+Route::group(['middleware' => ['auth', 'verified']], function(){
+	Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
+	->name('dashboard');
+
+	Route::prefix('user')->middleware(['auth', 'verified'])->group(function () {
+			Route::view('profile', 'profile.show');
+		});
+});
+
+php artisan make:controller DashboardController
+///app/Http/Controllers/DashboardController.php
+public function index()
+    {
+        if(Auth::user()->hasRole('user')){
+            return view('user-dashboard');
+        }
+        elseif(Auth::user()->hasRole('admin')){
+            return view('admin-dashboard');
+        }
+    }
+///import class facades auth
+
+///specific show page based on role
+->middleware(['auth', 'role:user'])
+
+///specific show html section based on role
+@if (Auth::user()->hasRole('admin'))
+<html>
+@endif
+
+///create table:
+php artisan make:migration create_tableName_table
+
+///create controller:
+php artisan make:controller ControllerName -r
+
+///route resourse controller
+Route::resource('name', PermohonanController::class);
+
+///create model:
+php artisan make:model ModelName
+
+///make column in db fillable
+protected $fillable = ['column1', 'column2'];
+
+///custom table name to be used in model
+protected $table = 'table_name';
+
+///resource routing:
+Route::resource('url', ControllerName::class);
+
+///controller store to db
+$tableName = ControllerName::create([
+            'name' => $request->name,
+        ]);
+return back();
+
+///notification after store to db
+//in controller:
+return back()->with('success', 'text');
+//in html:
+@if(session('success'))
+   <html alert>
+@endif
+
