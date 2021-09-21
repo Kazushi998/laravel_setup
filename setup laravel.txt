@@ -1,3 +1,9 @@
+source ~/.bash_profile
+
+cd applications/xampp/htdocs
+
+laravel new projectName
+
 ///change db name in env file
 
 ///change timezone, config/app.php:
