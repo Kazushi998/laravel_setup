@@ -1,6 +1,6 @@
 source ~/.bash_profile
 
-cd applications/xampp/htdocs
+cd /applications/xampp/htdocs
 
 laravel new projectName
 
