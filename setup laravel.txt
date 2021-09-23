@@ -4,6 +4,8 @@ cd /applications/xampp/htdocs
 
 laravel new projectName
 
+sudo chmod -R 777 storage/*
+
 ///change db name in env file
 
 ///change timezone, config/app.php:
@@ -14,6 +16,27 @@ composer require zacksmash/fortify-ui
 php artisan fortify:ui
 php artisan migrate
 
+///bootstrap ui:
+composer require laravel/ui
+php artisan ui bootstrap
+php artisan ui bootstrap --auth
+npm install
+npm run dev
+npm run watch
+yes
+yes
+yes
+put this in <head> tag:
+<meta charset="utf-8">
+
+<title>{{ config('app.name', 'Laravel') }}</title>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+<!-- Styles -->
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 ///fortifyuikit:
 composer require zacksmash/fortify-uikit
 php artisan fortify:uikit
@@ -23,7 +46,9 @@ npm i && npm run dev
 composer require santigarcor/laratrust
 php artisan vendor:publish --tag="laratrust"
 php artisan laratrust:setup
+
 yes
+
 php artisan laratrust:seeder
 php artisan vendor:publish --tag="laratrust-seeder"
 composer dump-autoload
@@ -58,6 +83,9 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 			Route::view('profile', 'profile.show');
 		});
 });
+
+///create model & migration & controller with resource
+php artisan make:model ModelName -mcr
 
 php artisan make:controller DashboardController
 ///app/Http/Controllers/DashboardController.php
@@ -114,4 +142,3 @@ return back()->with('success', 'text');
 @if(session('success'))
    <html alert>
 @endif
-
