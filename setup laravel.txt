@@ -20,9 +20,11 @@ php artisan migrate
 composer require laravel/ui
 php artisan ui bootstrap
 php artisan ui bootstrap --auth
+
 yes
 yes
 yes
+
 npm i && npm run dev && npm run watch
 
 put this in <head> tag:
@@ -52,7 +54,7 @@ php artisan laratrust:seeder
 php artisan vendor:publish --tag="laratrust-seeder"
 composer dump-autoload
 
-///In the database/seeds/DatabaseSeeder.php file you have to add this to the run method:
+///In the database/seeders/DatabaseSeeder.php file you have to add this to the run method:
 $this->call(LaratrustSeeder::class);
 
 ///roles structure: config/laratrust_seeder.php
