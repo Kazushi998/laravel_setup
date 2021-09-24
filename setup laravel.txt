@@ -20,12 +20,11 @@ php artisan migrate
 composer require laravel/ui
 php artisan ui bootstrap
 php artisan ui bootstrap --auth
-npm install
-npm run dev
-npm run watch
 yes
 yes
 yes
+npm i && npm run dev && npm run watch
+
 put this in <head> tag:
 <meta charset="utf-8">
 
