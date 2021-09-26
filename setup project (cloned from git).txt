@@ -1,0 +1,8 @@
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+//create database
+//add database info in .env file
+php artisan migrate
+php artisan db:seed
