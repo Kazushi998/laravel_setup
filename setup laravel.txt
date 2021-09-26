@@ -19,13 +19,7 @@ php artisan migrate
 ///bootstrap ui:
 composer require laravel/ui
 php artisan ui bootstrap
-php artisan ui bootstrap --auth
-
-yes
-yes
-yes
-
-npm i && npm run dev && npm run watch
+npm i && npm run dev
 
 put this in <head> tag:
 
@@ -34,11 +28,6 @@ put this in <head> tag:
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-///fortifyuikit:
-composer require zacksmash/fortify-uikit
-php artisan fortify:uikit
-npm i && npm run dev
 
 ///laratrust:
 composer require santigarcor/laratrust
