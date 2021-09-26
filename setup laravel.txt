@@ -21,7 +21,7 @@ composer require laravel/ui
 php artisan ui bootstrap
 npm i && npm run dev
 
-put this in <head> tag:
+put this in <head> tag, file: resouces/views/layouts/app.blade.php
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
