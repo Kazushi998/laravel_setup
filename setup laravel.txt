@@ -129,3 +129,12 @@ return back()->with('success', 'text');
 @if(session('success'))
    <html alert>
 @endif
+
+//install excel export package
+composer require maatwebsite/excel
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+php artisan make:export ExcelExport
+//in app/Exports/ExcelExport.php
+return ModelName::all();
+//in controller
+return Excel::download(new ExcelExport, 'excel.xlsx');
