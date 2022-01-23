@@ -143,3 +143,29 @@ RewriteRule ^(.*)$ public/$1
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ server.php
+
+//integrate laragon cmder to vscode terminal
+"terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "laragon": {
+            "path": "C:\\laragon\\bin\\cmder\\cmder.bat",
+            "args": [
+                "."
+            ],
+        },
+    },
+    "terminal.integrated.defaultProfile.windows": "laragon",
