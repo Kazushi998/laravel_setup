@@ -32,27 +32,6 @@ put this in <head> tag, file: resouces/views/layouts/app.blade.php
 ///create model & migration & controller with resource
 php artisan make:model ModelName -mcr
 
-php artisan make:controller DashboardController
-///app/Http/Controllers/DashboardController.php
-public function index()
-    {
-        if(Auth::user()->hasRole('user')){
-            return view('user-dashboard');
-        }
-        elseif(Auth::user()->hasRole('admin')){
-            return view('admin-dashboard');
-        }
-    }
-///import class facades auth
-
-///specific show page based on role
-->middleware(['auth', 'role:user'])
-
-///specific show html section based on role
-@if (Auth::user()->hasRole('admin'))
-<html>
-@endif
-
 ///create table:
 php artisan make:migration create_tableName_table
 
