@@ -2,7 +2,7 @@
 <input type='text' name='input2'>
 
 input hidden id=countInput name=countInput
---------------------------script-----------------------
+---------------------------script-----------------------------
 count = 2;
 function createInput() {
         var newDiv = document.createElement('div');
@@ -16,7 +16,7 @@ function createInput() {
         
     }
 
-
+--------------------------controller---------------------------
 for(i = 1; i < (int)$request->countInput; i++){
 $Order = Order::create({
         'name' = $request->(name.$i),
