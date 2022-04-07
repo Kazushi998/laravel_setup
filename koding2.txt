@@ -1,12 +1,24 @@
+<input type='text' name='input1'>
+<input type='text' name='input2'>
+
+input hidden id=countInput name=countInput
+--------------------------script-----------------------
+count = 2;
 function createInput() {
         var newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'form-group mb-2');
 
-        newDiv.innerHTML = "<input=text>";
+        newDiv.innerHTML = "<input type='text' name='input" + count + "'>";
 
         document.getElementById("add").appendChild(newDiv);
+        document.getElementById("countInput").value = count;
+        count++;
+        
     }
-    
-    <div id="add">
-    <input type="text>
-    </div>
+
+
+for(i = 1; i < (int)$request->countInput; i++){
+$Order = Order::create({
+        'name' = $request->(name.$i),
+})
+}
