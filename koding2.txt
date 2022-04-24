@@ -1,24 +1,66 @@
-<input type='text' name='input[]'>
-<input type='text' name='input[]'>
+<canvas id="myChart2" width="400" height="200"></canvas>
 
-
----------------------------script-----------------------------
-
-function createInput() {
-        var newDiv = document.createElement('div');
-        newDiv.setAttribute('class', 'form-group mb-2');
-
-        newDiv.innerHTML = "<input type='text' name='input[]'>";
-
-        document.getElementById("add").appendChild(newDiv);
-        document.getElementById("countInput").value = count;
-        count++;
-        
-    }
-
---------------------------controller---------------------------
-for($i = 1; $i < count($request->name); $i++){
-$Order = Order::create({
-        'name' = $request->name[$i],
-})
-}
+const myChart2 = new Chart(
+      document.getElementById('myChart2'),
+      {
+        type: 'pie',
+        data: {
+        labels: [
+        'Telah Lengkap',
+        'Tidak Lengkap',
+        'Tidak Sah',
+        ],
+        datasets: [{
+            backgroundColor: [
+            '#2FA360',
+            '#FFED4A',
+            '#dd413b'
+            ],
+            borderColor: [
+            '#2FA360',
+            '#FFED4A',
+            '#dd413b'
+            ],
+            data: [{{$data_carta[0]}},{{$data_carta[1]}},{{$data_carta[2]}},],
+        }],
+        },
+            plugins: [ChartDataLabels],
+            options: {
+                responsive: true,
+                maintainAspectRatio	: true,
+                plugins: {
+                    legend: {
+                        onClick: false,
+                        display: true,
+                        labels: {
+                            color: color,
+                            boxWidth: 18,
+                            boxHeight: 15,
+                            font: {
+                                size: 14,
+                            },
+                        },
+                    },
+                    datalabels: {
+                        color: 'black',
+                        formatter: (value, ctx) => {
+                            if (value > 0){
+                                let sum = 0;
+                                let dataArr = ctx.chart.data.datasets[0].data;
+                                dataArr.map(data => {
+                                    sum += data;
+                                });
+                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                return percentage;
+                            }else {
+                                return null;
+                            }
+                        },
+                        font: {
+                                size: 17,
+                            }
+                    }
+                }
+            }
+        }
+    );
