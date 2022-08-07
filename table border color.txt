@@ -1,0 +1,4 @@
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th
+    {
+    border: 1px solid black; //your desired color
+    }
