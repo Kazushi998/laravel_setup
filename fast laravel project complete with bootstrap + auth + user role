@@ -1,0 +1,23 @@
+open laragon
+quick app -> laravel -> enter project name
+edit .env change db_database from 'laravel' to project name
+
+open laragon terminal
+insert command:
+cd [project_name]
+php artisan migrate
+composer require laravel/ui
+php artisan ui bootstrap --auth
+npm install
+npm run build
+
+navicat->open db
+ctrl + d
+add field: (name: role, type: varchar, length: 255)
+
+how to hide view based on role in html
+@if(Auth::user()->role=="Admin")
+//admin only code here
+@else
+//user code here
+@endif
